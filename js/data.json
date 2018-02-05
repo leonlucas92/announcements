@@ -1,0 +1,18 @@
+[
+    {"image": "img/userdefault.png", "brand": "Citroën", "model": "C3", "color": "Azul", "year":"2013", "motor": "1.5 Flex", "exchange": "Manual", "price": "40000", "status": "ATIVO"},
+    {"image": "", "brand": "Peugeot", "model": "208", "color": "Vermelho", "year":"2013", "motor": "1.6 Flex", "exchange": "Manual", "price": "41000", "status": "ATIVO"},
+    {"image": "", "brand": "Fiat", "model": "Novo Uno", "color": "Vermelho", "year":"2013", "motor": "1.0 Flex", "exchange": "Manual", "price": "35000", "status": "ATIVO"},
+    {"image": "", "brand": "Volkswagen", "model": "Up", "color": "Branco", "year":"2015", "motor": "1.0 Flex", "exchange": "Manual", "price": "30000", "status": "ATIVO"},
+    {"image": "", "brand": "Jeep", "model": "Renegade", "color": "Preto", "year":"2017", "motor": "3.0 Flex", "exchange": "Automático", "price": "85000", "status": "ATIVO"},
+    {"image": "", "brand": "Citroën", "model": "C3 Picasso", "color": "Prata", "year":"2014", "motor": "1.6 Flex", "exchange": "Automático", "price": "45000", "status": "ATIVO"},
+    {"image": "", "brand": "Volkswagen", "model": "Fox", "color": "Prata", "year":"2010", "motor": "1.6 Flex", "exchange": "Automático", "price": "45000", "status": "ATIVO"},
+    {"image": "", "brand": "Volkswagen", "model": "Gol", "color": "Preto", "year":"2009", "motor": "1.0 Flex", "exchange": "Manual", "price": "30000", "status": "ATIVO"},
+    {"image": "", "brand": "Ford", "model": "Fiesta", "color": "Vermelho", "year":"2014", "motor": "1.6 Flex", "exchange": "Manual", "price": "28000", "status": "VENDIDO"},
+    {"image": "", "brand": "Ford", "model": "New Fiesta", "color": "Branco", "year":"2016", "motor": "1.6 Flex", "exchange": "Manual", "price": "45000", "status": "INATIVO"},
+    {"image": "", "brand": "Fiat", "model": "Palio", "color": "Azul", "year":"2012", "motor": "1.4 Flex", "exchange": "Manual", "price": "30000", "status": "VENDIDO"},
+    {"image": "", "brand": "Honda", "model": "Fit", "color": "Prata", "year":"2009", "motor": "1.4 Flex", "exchange": "Manual", "price": "32000", "status": "INATIVO"},
+    {"image": "", "brand": "Honda", "model": "New Civic", "color": "Prata", "year":"2016", "motor": "2.0 Flex", "exchange": "Automático", "price": "51000", "status": "VENDIDO"},
+    {"image": "", "brand": "Ford", "model": "Fiesta", "color": "Verde", "year":"1998", "motor": "1.0", "exchange": "Manual", "price": "12000", "status": "INATIVO"},
+    {"image": "", "brand": "Fiat", "model": "Uno", "color": "Branco", "year":"1992", "motor": "1.0", "exchange": "Manual", "price": "10000", "status": "VENDIDO"},
+    {"image": "", "brand": "Volkswagen", "model": "Gol", "color": "Branco", "year":"2004", "motor": "1.0", "exchange": "Manual", "price": "17000", "status": "VENDIDO"}
+]

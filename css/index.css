@@ -1,0 +1,33 @@
+body {
+    background-color: #7ecad8 !important;
+}
+.alert.ng-hide {
+    opacity: 0;
+}
+  
+.alert.ng-hide,
+.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.nav-image{
+    width: 48px;
+}
+.list-icon-image{
+    width: 64px;
+}
+
+.main{
+    min-width: 450px;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.user-menu.border{
+    border-width: 2px 2px !important;
+    border-radius: 0 3px 3px 0;
+}
+
+.navbrand{
+    width: calc(100% - 257px);
+}

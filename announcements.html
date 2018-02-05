@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" ng-app="findout">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <title>Findout</title>
+  </head>
+  <body ng-controller="findoutController" class="bg-light">
+    <nav class="d-flex navbar navbar-expand-lg sticky-top navbar-light bg-light p-0 border border-top-0 border-left-0 border-right-0">
+      <div class="navbrand bg-white pl-3 pt-1 pb-1">
+          <a class="navbar-brand text-warning" href="#">Findout</a> 
+      </div>
+       
+      <div class="d-flex justify-content-end">
+          <div class="user-menu bg-white mb-0 pl-2 border border-top-0 border-bottom-0 border-left-0 border-warning">
+            <div class="float-left pr-2">
+              <p class="m-0 text-right text-dark">Olá, {{user.name}}</p>
+              <div class="p-0 float-right">
+                <a class="d-inline text-primary nav-link font-weight-light m-0 p-0" href="#">sair</a>
+              </div>
+            </div>
+            <img style="background-image: url('img/userdefault.png');" class="nav-image float-right">
+            <!--<img ng-style="{'background-image': 'url(' + user.image + ')'}" class="nav-image float-right">-->
+          </div>
+          <a class="align-self-center text-secondary nav-link m-0 material-icons" href="#">settings</a>
+      </div>
+    </nav>
+
+    <!--<ul class="nav bg-dark nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="navbar-brand text-primary" href="#">Findout</a>
+      </li>
+      <li class="nav-item">
+        <p class="m-0">Olá, {{user.name}}</p>
+        <a href="#" class="text-primary font-weight-light m-0 l">sair</a>
+      </li>
+      <li class="nav-item">
+        <img class="nav-image float-right" src="img/userdefault.png">
+      </li>
+    </ul>-->
+    <!--<div class="container-fluid bg-white">
+
+      <div class="row pt-2 pb-2 mb-2 border border-top-0 border-left-0 border-right-0" ng-repeat="announcement in announcements">
+        <div class="col-lg-auto">
+          <img class="mr-3 list-icon-image m-0" src="img/car-icon.png" alt="">
+          <span>{{announcement.brand}}</span> 
+        </div>
+        <div class="col-md">
+          <span>{{announcement.model}}</span> 
+        </div>
+        <div class="col-md">
+            <span>{{announcement.year}}</span>
+        </div>
+        <div class="col-md">
+            <span>{{announcement.motor}}</span>
+        </div>
+        <div class="col-md">
+            <span class="align-middle">{{announcement.exchange}}</span>
+        </div>
+        <div class="col-md">
+          <h6>R$ {{announcement.price}}</h6>
+        </div>
+        <div class="col-md">
+          <h6 ng-class="{'text-info' : announcement.status == 'ATIVO', 'text-danger' : announcement.status == 'INATIVO', 'text-success' : announcement.status == 'VENDIDO'}">{{announcement.status}}</h6>
+        </div>
+      </div>
+    </div>-->
+
+    <div class="container-fluid bg-light pt-5 pb-5">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Anúncios</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+          
+          <form class="form-inline my-2 my-lg-0">
+            <input ng-model="search" class="form-control mr-sm-2 rounded-0" type="text" placeholder="Buscar" aria-label="Buscar">
+          </form>
+        </div>
+      </nav>
+      
+      <table class="table table-hover">
+          <thead class="bg-white">
+            <tr>
+              <th ng-click="sort('brand')" class="col">FABRICANTE</th>
+              <th ng-click="sort('model')" class="col">MODELO</th>
+              <th ng-click="sort('color')" class="col">COR</th>
+              <th ng-click="sort('year')" class="col">ANO</th>
+              <th ng-click="sort('motor')" class="col">MOTOR</th>
+              <th ng-click="sort('exchange')" class="col">CÂMBIO</th>
+              <th ng-click="sort('price')" class="col">PREÇO</th>
+              <th ng-click="sort('status')" class="col">STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="announcement in announcements | filter:search | orderBy:sortKey:reverse | itemsPerPage:5">
+              <td class="col">
+                <img class="mr-3 list-icon-image m-0" ng-init="teste = 'img/car-icon.png' || announcement.image" ng-src="{{teste}}">
+                <p class="float-right">{{announcement.brand}}</p> 
+              </td>
+              <td class="col">{{announcement.model}}</td>
+              <td class="col">{{announcement.color}}</td>
+              <td class="col">{{announcement.year}}</td>
+              <td class="col">{{announcement.motor}}</td>
+              <td class="col">{{announcement.exchange}}</td>
+              <td class="col">
+                <h6>R$ {{announcement.price}}</h6> 
+              </td>
+              <td class="col">
+                <h6 ng-class="{'text-info' : announcement.status == 'ATIVO', 'text-danger' : announcement.status == 'INATIVO', 'text-success' : announcement.status == 'VENDIDO'}">{{announcement.status}}</h6> 
+              </td>
+            </tr>
+            <tr ng-init="empty=false" ng-show="empty" class="userList-empty text-center">
+              <td class="col mt-5 border-0 text-secondary">
+                <span>Nenhum anúncio encontrado :(</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+        <dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
+      
+      <!-- Modal Add User -->
+      <div id="userModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{title}} Usuário</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    
+    <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="js/dirPagination.js"></script>
+
+    <script src="js/main-app.js"></script>
+
+  </body>
+</html>
