@@ -1,14 +1,11 @@
 body {
-    background-color: #7ecad8 !important;
+    background-color: #828075d9 !important;
 }
-.alert.ng-hide {
-    opacity: 0;
+
+#form .form-input{
+    height: 45px;
 }
-  
-.alert.ng-hide,
-.ng-hide-remove {
-    transition: all linear 0.5s;
-}
+
 
 .nav-image{
     width: 48px;
@@ -30,4 +27,16 @@ body {
 
 .navbrand{
     width: calc(100% - 257px);
+}
+
+.table-hover tbody tr.list-empty:hover{
+    background-color: transparent;
+}
+
+.sort{
+    font-size: 18px !important;
+    cursor: default;
+}
+.table-hover thead th:not(:first-child){
+    cursor: pointer;
 }

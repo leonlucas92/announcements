@@ -15,155 +15,126 @@
     <title>Findout</title>
   </head>
   <body ng-controller="findoutController" class="bg-light">
-    <nav class="d-flex navbar navbar-expand-lg sticky-top navbar-light bg-light p-0 border border-top-0 border-left-0 border-right-0">
-      <div class="navbrand bg-white pl-3 pt-1 pb-1">
+    <nav class="d-flex navbar justify-content-end navbar-expand-lg sticky-top navbar-light bg-dark p-0 border border-top-0 border-left-0 border-right-0">
+      <div class="navbrand pl-3 pt-1 pb-1">
           <a class="navbar-brand text-warning" href="#">Findout</a> 
       </div>
        
       <div class="d-flex justify-content-end">
-          <div class="user-menu bg-white mb-0 pl-2 border border-top-0 border-bottom-0 border-left-0 border-warning">
+          <div class="user-menu mb-0 pl-2 border border-top-0 border-bottom-0 border-left-0 border-warning">
             <div class="float-left pr-2">
-              <p class="m-0 text-right text-dark">Olá, {{user.name}}</p>
+              <p class="m-0 text-right text-white">Olá, {{user.name}}</p>
               <div class="p-0 float-right">
-                <a class="d-inline text-primary nav-link font-weight-light m-0 p-0" href="#">sair</a>
+                <a class="d-inline text-warning nav-link font-weight-light m-0 p-0" href="#" data-toggle="modal" data-target="#logout">sair</a>
               </div>
             </div>
-            <img style="background-image: url('img/userdefault.png');" class="nav-image float-right">
+            <img ng-src="img/userdefault.png" class="nav-image float-right">
             <!--<img ng-style="{'background-image': 'url(' + user.image + ')'}" class="nav-image float-right">-->
           </div>
           <a class="align-self-center text-secondary nav-link m-0 material-icons" href="#">settings</a>
       </div>
     </nav>
 
-    <!--<ul class="nav bg-dark nav-pills nav-fill">
-      <li class="nav-item">
-        <a class="navbar-brand text-primary" href="#">Findout</a>
-      </li>
-      <li class="nav-item">
-        <p class="m-0">Olá, {{user.name}}</p>
-        <a href="#" class="text-primary font-weight-light m-0 l">sair</a>
-      </li>
-      <li class="nav-item">
-        <img class="nav-image float-right" src="img/userdefault.png">
-      </li>
-    </ul>-->
-    <!--<div class="container-fluid bg-white">
-
-      <div class="row pt-2 pb-2 mb-2 border border-top-0 border-left-0 border-right-0" ng-repeat="announcement in announcements">
-        <div class="col-lg-auto">
-          <img class="mr-3 list-icon-image m-0" src="img/car-icon.png" alt="">
-          <span>{{announcement.brand}}</span> 
-        </div>
-        <div class="col-md">
-          <span>{{announcement.model}}</span> 
-        </div>
-        <div class="col-md">
-            <span>{{announcement.year}}</span>
-        </div>
-        <div class="col-md">
-            <span>{{announcement.motor}}</span>
-        </div>
-        <div class="col-md">
-            <span class="align-middle">{{announcement.exchange}}</span>
-        </div>
-        <div class="col-md">
-          <h6>R$ {{announcement.price}}</h6>
-        </div>
-        <div class="col-md">
-          <h6 ng-class="{'text-info' : announcement.status == 'ATIVO', 'text-danger' : announcement.status == 'INATIVO', 'text-success' : announcement.status == 'VENDIDO'}">{{announcement.status}}</h6>
-        </div>
-      </div>
-    </div>-->
-
-    <div class="container-fluid bg-light pt-5 pb-5">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Anúncios</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container-fluid bg-light pt-2">          
+      <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 pl-0 pr-0">
+        <h4 class="mr-3">Anúncios</h4> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-          
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
           <form class="form-inline my-2 my-lg-0">
-            <input ng-model="search" class="form-control mr-sm-2 rounded-0" type="text" placeholder="Buscar" aria-label="Buscar">
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons rounded-0">search</span>
+            </div>
+            <input ng-model="search" ng-keyup="find()" class="form-control rounded-0" type="text" placeholder="Buscar" aria-label="Buscar">
           </form>
         </div>
+        
       </nav>
+      <div class="d-flex mb-3">
+        <div class="col pt-2 border border-dark border-top-0 border-left-0 border-bottom-0">
+          <span>CADASTRADOS</span>
+          <p class="text-secondary">{{announcements.length}}</p>
+        </div>
+        <div class="col pt-2 border border-dark border-top-0 border-left-0 border-bottom-0">
+          <span>ATIVOS</span>
+          <p class="text-info">{{active}}</p>
+        </div>
+        <div class="col pt-2 border border-dark border-top-0 border-left-0 border-bottom-0">
+          <span>VENDIDOS</span>
+          <p class="text-success">{{sold}}</p>
+        </div>
+        <div class="col pt-2">
+          <span>INATIVOS</span>
+          <p class="text-danger">{{inactive}}</p>
+        </div>
+      </div>
       
-      <table class="table table-hover">
-          <thead class="bg-white">
+      <div class="table-responsive-xl">
+        <table class="table table-hover border border-dark">
+          <thead class="thead-dark">
             <tr>
-              <th ng-click="sort('brand')" class="col">FABRICANTE</th>
-              <th ng-click="sort('model')" class="col">MODELO</th>
-              <th ng-click="sort('color')" class="col">COR</th>
-              <th ng-click="sort('year')" class="col">ANO</th>
-              <th ng-click="sort('motor')" class="col">MOTOR</th>
-              <th ng-click="sort('exchange')" class="col">CÂMBIO</th>
-              <th ng-click="sort('price')" class="col">PREÇO</th>
-              <th ng-click="sort('status')" class="col">STATUS</th>
+              <th><i class="material-icons sort ml-2 align-middle">sort</i></th>
+              <th style="min-width: 200px" ng-click="sort('brand')">FABRICANTE</th>
+              <th ng-click="sort('model')">MODELO</th>
+              <th ng-click="sort('color')">COR</th>
+              <th ng-click="sort('year')">ANO</th>
+              <th ng-click="sort('motor')">MOTOR</th>
+              <th ng-click="sort('exchange')">CÂMBIO</th>
+              <th style="min-width: 130px" ng-click="sort('price')">PREÇO</th>
+              <th ng-click="sort('status')">STATUS</th>
             </tr>
           </thead>
           <tbody>
-            <tr dir-paginate="announcement in announcements | filter:search | orderBy:sortKey:reverse | itemsPerPage:5">
-              <td class="col">
-                <img class="mr-3 list-icon-image m-0" ng-init="teste = 'img/car-icon.png' || announcement.image" ng-src="{{teste}}">
-                <p class="float-right">{{announcement.brand}}</p> 
+            <tr dir-paginate="announcement in announcements | filter:search | orderBy:sortKey:reverse | itemsPerPage:6" >
+              <td>&nbsp;</td>
+              <td>
+                <img class="mr-3 list-icon-image m-0" ng-src="img/car-icon.png">
+                <p class="d-inline">{{announcement.brand}}</p> 
               </td>
-              <td class="col">{{announcement.model}}</td>
-              <td class="col">{{announcement.color}}</td>
-              <td class="col">{{announcement.year}}</td>
-              <td class="col">{{announcement.motor}}</td>
-              <td class="col">{{announcement.exchange}}</td>
-              <td class="col">
-                <h6>R$ {{announcement.price}}</h6> 
+              <td><p class="d-inline text-center">{{announcement.model}}</p></td>
+              <td><p>{{announcement.color}}</p></td>
+              <td><p>{{announcement.year}}</p></td>
+              <td><p>{{announcement.motor}}</p></td>
+              <td><p>{{announcement.exchange}}</p></td>
+              <td>
+                <h6>R$ {{currencyMask(announcement.price)}}</h6> 
               </td>
-              <td class="col">
+              <td>
                 <h6 ng-class="{'text-info' : announcement.status == 'ATIVO', 'text-danger' : announcement.status == 'INATIVO', 'text-success' : announcement.status == 'VENDIDO'}">{{announcement.status}}</h6> 
               </td>
             </tr>
-            <tr ng-init="empty=false" ng-show="empty" class="userList-empty text-center">
-              <td class="col mt-5 border-0 text-secondary">
+            <tr ng-show="empty" class="list-empty">
+              <td colspan="9" class="text-center col-lg-12 mt-5 border-0 text-secondary">
                 <span>Nenhum anúncio encontrado :(</span>
               </td>
             </tr>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
-        <dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
+      </div>
       
-      <!-- Modal Add User -->
-      <div id="userModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <dir-pagination-controls class="text-center text-warning" max-size="5" boundary-links="true"></dir-pagination-controls>
         
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">{{title}} Usuário</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-              
+        <!-- Modal Sair-->
+        <div id="logout" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title text-dark">Sair</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body text-center">
+                <span>Tem certeza que deseja sair?</span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="logout()">Sim</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Continuar</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      
-      
+        
     </div>
     
 
@@ -171,13 +142,12 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
     
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-animate.min.js"></script>
     
-    <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    
     <script src="js/dirPagination.js"></script>
 
     <script src="js/main-app.js"></script>

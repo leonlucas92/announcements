@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="findout">
+<html lang="en" ng-app="loginFindout">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
 
     <title>Login - Findout</title>
   </head>
-  <body ng-controller="findoutController" class="pt-5 pb-5 mb-5">
+  <body ng-controller="loginController" class="pt-5 pb-5 mb-5">
     <nav class="navbar bg-white fixed-bottom border border-left-0 border-right-0">
-      <a class="navbar-brand text-primary" href="#">Findout</a>
+      <a class="navbar-brand text-warning" href="#">Findout</a>
       <div class="float-right">
           <p class="m-0">Criado por Augusto Lucas :)</p>
           <p class="font-weight-light m-0">Todos os direitos reservados.</p>
@@ -22,50 +22,24 @@
     
     <div class="main container w-25 mt-5 mb-5 pt-5 pb-5 bg-white">
             <form id="form" name="form" ng-submit="loginApp(form.$valid)" novalidate>
-                <div class="form-group col">
-                    <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control form-control-sm rounded-0" ng-model="user.email" placeholder="E-mail" 
+                <div class="form-input form-group col">
+                    <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control form-control-sm border-dark rounded-0" ng-model="user.email" placeholder="E-mail" 
                         ng-class="{'is-invalid' : (form.email.$error.required && !form.email.$pristine) || (form.email.$error.required && submitted) || (form.email.$error.pattern && !form.email.$error.required)}" required />
                     <p ng-show="(form.email.$error.required && !form.email.$pristine) || (form.email.$error.required && submitted)" class="form-text invalid-feedback m-0">E-mail é obrigatório.</p>
                     <p ng-show="(form.email.$error.pattern && !form.email.$error.required && !form.email.$pristine) || (form.email.$error.pattern && submitted)" class="form-text invalid-feedback m-0">Formato incorreto.</p>
                 </div>
-                <div class="form-group col">
-                    <input id="password" name="password" type="password" class="form-control form-control-sm rounded-0" ng-model="user.password" placeholder="Senha" ng-class="{'is-invalid' : (form.password.$error.required && !form.password.$pristine) || (form.password.$error.required && submitted)}" required />
+                <div class="form-input form-group col">
+                    <input id="password" name="password" type="password" class="form-control form-control-sm border-dark rounded-0" ng-model="user.password" placeholder="Senha" ng-class="{'is-invalid' : (form.password.$error.required && !form.password.$pristine) || (form.password.$error.required && submitted)}" required />
                     <p ng-show="(form.password.$error.required && !form.password.$pristine) || submitted" class="form-text invalid-feedback m-0">Digite sua senha.</p>
                 </div>
                 
-                <div class="form-group col mt-5 mb-4">
-                    <button type="submit" class="btn btn-primary btn-block rounded-0">ENTRAR</button>
+                <div class="form-group col mt-4 mb-4">
+                    <button type="submit" class="btn btn-outline-warning btn-block rounded-0">ENTRAR</button>
                 </div>
                 <div class="form-group col text-center ">
-                    <a href="#" class="text-primary">Esqueci minha senha</a>
+                    <a href="#" class="text-dark">Esqueci minha senha</a>
                 </div>
             </form>
-        
-      
-      
-      
-      <!-- Modal Esqueci minha senha -->
-      <div id="deleteUser" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal Excluir-->
-          <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title text-dark">Excluir Usuário</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body text-center">
-              <span>Tem certeza que deseja excluir "</span><strong>{{userForm.name}}</strong><span>"?</span>
-              <p class="m-0">Esta ação não poderá ser desfeita.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteUser()">Excluir</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
     </div>
     
 
@@ -73,7 +47,6 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
     
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
@@ -81,7 +54,7 @@
     
     <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
-    <script src="js/main-app.js"></script>
+    <script src="js/login.js"></script>
 
   </body>
 </html>
